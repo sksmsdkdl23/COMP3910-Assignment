@@ -1,10 +1,13 @@
 package com.corejsf;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.event.RowEditEvent;
 
 import ca.bcit.infosys.employee.Credentials;
 import ca.bcit.infosys.employee.Employee;
@@ -33,6 +36,11 @@ public class Login implements Serializable {
      * Password.
      */
     private String password;
+    
+    /**
+     * Old userName.
+     */
+    private String oldUserName;
 
     /**
      * Get user name.
@@ -136,5 +144,28 @@ public class Login implements Serializable {
      */
     public String back() {
         return "back";
+    }
+    
+    /**
+     * Ajax event.
+     * @param event ajax Event
+     */
+    public void onRowEdit(RowEditEvent event) {
+        Employee emp = (Employee) event.getObject();
+        Map<String, Employee> tempEmp = empList.getEmpMap();
+        Map<String, String> tempCred = empList.getLoginCombos();
+        
+        String pass = tempCred.remove(oldUserName);
+        tempCred.put(emp.getUserName(), pass);
+        oldUserName = null;
+    }
+    
+    /**
+     * Ajax event.
+     * @param event ajax Event
+     */
+    public void onRowEditInit(RowEditEvent event) {
+        Employee oldEmp = (Employee) event.getObject();
+        oldUserName = oldEmp.getUserName();
     }
 }

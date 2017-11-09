@@ -24,8 +24,6 @@ public class EmployeeCollection implements EmployeeList {
 
     private Employee admin;
     
-    private boolean editable;
-    
     /**
      * EmployeeCollection constructor.
      */
@@ -38,9 +36,8 @@ public class EmployeeCollection implements EmployeeList {
         
         empMap.put("admin", new Employee("admin", 0, "admin"));
         admin = empMap.get("admin");
-        empMap.put("aaa", new Employee("aaa", 0, "aaa"));
-        empMap.put("bbb", new Employee("bbb", 0, "bbb"));
-        editable = false;
+        empMap.put("aaa", new Employee("aaa", 1, "aaa"));
+        empMap.put("bbb", new Employee("bbb", 2, "bbb"));
     }
 //    
 //    public List<Employee> copyEmployees() {
@@ -150,39 +147,18 @@ public class EmployeeCollection implements EmployeeList {
     public void setCurrentEmployee(Employee currentEmployee) {
         this.currentEmployee = currentEmployee;
     }
-    
     /**
-     * Checks if the field is editable.
-     * @return editable
-     *              true if the field(s) is editable; otherwise false
+     * @return the empMap
      */
-    public boolean getEditable() { 
-        return editable; 
+    public Map<String, Employee> getEmpMap() {
+        return empMap;
+    }
+    /**
+     * @param empMap the empMap to set
+     */
+    public void setEmpMap(Map<String, Employee> empMap) {
+        this.empMap = empMap;
     }
     
-    /**
-     * Sets editable to true or false.
-     * @param newValue
-     *              true or false.
-     * 
-     */
-    public void setEditable(boolean newValue) { 
-        editable = newValue;
-    }
     
-    /**
-     * Set editable to true.
-     */
-    public void edit() {
-        setEditable(true);
-        System.out.println(editable);
-    }
-    
-    /**
-     * Set inputText fields not editable.
-     */
-    public void save() {
-        setEditable(false);
-        System.out.println(editable);
-    }
 }
