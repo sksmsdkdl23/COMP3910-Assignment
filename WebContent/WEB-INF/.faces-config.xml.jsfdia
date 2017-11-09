@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success::#menu.xhtml" NAME="output"
+    PATH="/menu.xhtml" TARGET="rules:#menu.xhtml" TITLE="success" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#menu.xhtml" PATH="/menu.xhtml"
+  SHAPE="256,177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#menu.xhtml:0" NAME="item" PATH="/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#menu.xhtml:1" NAME="item1" PATH="/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="editUser::#editUser.xhtml" NAME="output"
+    PATH="/editUser.xhtml" TARGET="rules:#editUser.xhtml"
+    TITLE="editUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#editUser.xhtml" PATH="/editUser.xhtml"
+  SHAPE="464,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#editUser.xhtml:0" NAME="item"
+   PATH="/editUser.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="back::#menu.xhtml" NAME="output"
+    PATH="/menu.xhtml" TARGET="rules:#menu.xhtml" TITLE="back" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

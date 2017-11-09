@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+   </h:head>
+   <h:body>
+   	<h:form id="users">
+   		<p:dataTable var="employee" value="#{login.empList.employees}" id="userList">
+   			<p:column headerText="#{msgs.empName}">
+	            <p:inputText value="#{employee.name}" required="true" rendered="#{login.empList.editable}" 
+                            size="5"/>
+                <h:outputText value="#{employee.name}" rendered="#{not login.empList.editable}" />
+		    </p:column>
+		    <p:column headerText="#{msgs.empNum}">
+	            <p:inputText value="#{employee.empNumber}" required="true" rendered="#{login.empList.editable}" 
+                            size="5"/>
+                <h:outputText value="#{employee.empNumber}" rendered="#{not login.empList.editable}" />
+		    </p:column>
+		    <p:column headerText="#{msgs.userName}">
+	            <p:inputText value="#{employee.userName}" required="true" rendered="#{login.empList.editable}" 
+                            size="5" />
+                <h:outputText value="#{employee.userName}" rendered="#{not login.empList.editable}" />
+		    </p:column>
+   		</p:dataTable>
+   		<p:commandButton value="Add User" />
+   		<p:commandButton value="Save" action="#{login.empList.save}" update=":users:userList"/>
+   		<p:commandButton value="Edit" action="#{login.empList.edit}" update=":users:userList" />
+   		<p:commandButton value="Back" action="#{login.back}" />
+   	</h:form>
+   </h:body>
+</html>
