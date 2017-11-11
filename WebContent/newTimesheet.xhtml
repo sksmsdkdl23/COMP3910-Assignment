@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+   </h:head>
+   <h:body>
+   	<h:form id="timesheet">
+   		<p:dataTable editable="true" var="detail" value="#{login.newSheet.details}" id="details">
+   		
+   			<p:column headerText="#{msgs.delete}">
+   				<h:commandLink value="#{msgs.delete}" action="login.deleteRow(detail)"/>
+   			</p:column>
+   			<p:column headerText="Project ID">
+   				<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.projectID}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.projectID}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    <p:column headerText="WP">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.workPackage}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.workPackage}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="SAT">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[0]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[0]}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="SUN">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[1]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[1]}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="MON">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[2]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[2]}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="TUES">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[3]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[3]}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="WED">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[4]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[4]}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="THUR">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[5]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[5]}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column headerText="FRI">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.hoursForWeek[6]}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.hoursForWeek[6]}" />
+	   				</f:facet>
+   				</p:cellEditor>                
+		    </p:column>
+		    
+		    <p:column headerText="Notes">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{detail.notes}" size="3"/>
+   					</f:facet>
+	   				<f:facet name="output">
+	   					<h:outputText value="#{detail.notes}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
+		    
+		    <p:column>
+		    	<p:rowEditor />
+		    </p:column>
+		   
+		    
+   		</p:dataTable>
+   		<p:commandButton value="Add Row" action="#{login.addRow}" update=":timesheet:details"/>
+   		<p:commandButton value="Save" action="#{login.save}" />
+   		<p:commandButton value="Back" action="#{login.back}" />
+   	</h:form>
+   </h:body>
+</html>

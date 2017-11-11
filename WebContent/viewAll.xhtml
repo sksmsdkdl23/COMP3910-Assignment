@@ -10,10 +10,12 @@
    </h:head>
    <h:body>
    	<h:form>
-   		<p:commandButton value="#{msgs.logout}" action="#{login.logout}" />
-   		<p:commandButton value="#{msgs.editUsers}" action="#{login.editUser}" rendered="#{login.empList.adminPriviledge(login.loggedUser)}" />
-   		<p:commandButton value="#{msgs.viewTimesheets}" action="#{login.viewAll}" />
-   		<p:commandButton value="#{msgs.newTimesheet}" action="#{login.newTimesheet}" />
+   		<p:dataTable var="timesheet" value="#{login.userTimesheets}" id="timesheet">
+   			<p:column>
+   				<p:commandLink value="#{timesheet.endWeek}" action="#{login.viewTimesheet(timesheet)}"/>
+   			</p:column> 
+   		</p:dataTable>
+   		<p:commandButton value="Back" action="#{login.back}" />
    	</h:form>
    </h:body>
 </html>

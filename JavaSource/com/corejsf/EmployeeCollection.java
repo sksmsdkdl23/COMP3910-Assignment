@@ -24,29 +24,25 @@ public class EmployeeCollection implements EmployeeList {
 
     private Employee admin;
     
+    private int employeeId;
+    
     /**
      * EmployeeCollection constructor.
      */
     public EmployeeCollection() {
+        employeeId = 0;
         empMap = new HashMap<>();
         empCredential = new HashMap<>();
         empCredential.put("admin", "pass");
         empCredential.put("aaa", "pass");
         empCredential.put("bbb", "pass");
         
-        empMap.put("admin", new Employee("admin", 0, "admin"));
+        empMap.put("admin", new Employee("admin", employeeId++, "admin"));
         admin = empMap.get("admin");
-        empMap.put("aaa", new Employee("aaa", 1, "aaa"));
-        empMap.put("bbb", new Employee("bbb", 2, "bbb"));
+        empMap.put("aaa", new Employee("aaa", employeeId++, "aaa"));
+        empMap.put("bbb", new Employee("bbb", employeeId++, "bbb"));
     }
-//    
-//    public List<Employee> copyEmployees() {
-//        List<Employee> clone = new ArrayList<>(getEmployees().size());
-//        for (Employee e : getEmployees()) {
-//            clone.add(e.);
-//        }
-//        return 
-//    }
+
     @Override
     public List<Employee> getEmployees() {
         // TODO Auto-generated method stub
@@ -116,14 +112,15 @@ public class EmployeeCollection implements EmployeeList {
 
     @Override
     public void deleteEmployee(Employee userToDelete) {
-        // TODO Auto-generated method stub
+        empCredential.remove(userToDelete.getUserName());
+        empMap.remove(userToDelete.getUserName());
         
     }
 
     @Override
     public void addEmployee(Employee newEmployee) {
-        // TODO Auto-generated method stub
-        
+        newEmployee.setEmpNumber(employeeId++);
+        empMap.put(newEmployee.getUserName(), newEmployee);
     }
     
     /**
@@ -133,10 +130,8 @@ public class EmployeeCollection implements EmployeeList {
      */
     public boolean adminPriviledge(Employee emp) {
         if (emp == getAdministrator()) {
-            System.out.println("U R ADMIN");
             return true;
         }
-        System.out.println("U R NOT An ADMIN");
         return false;
     }
     
@@ -147,18 +142,19 @@ public class EmployeeCollection implements EmployeeList {
     public void setCurrentEmployee(Employee currentEmployee) {
         this.currentEmployee = currentEmployee;
     }
+    
     /**
+     * Get Employee Map.
      * @return the empMap
      */
     public Map<String, Employee> getEmpMap() {
         return empMap;
     }
     /**
+     * Set employee map.
      * @param empMap the empMap to set
      */
     public void setEmpMap(Map<String, Employee> empMap) {
         this.empMap = empMap;
     }
-    
-    
 }

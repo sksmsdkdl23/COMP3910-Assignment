@@ -59,4 +59,7 @@ public class TimesheetList implements TimesheetCollection {
         return "newSheet";
     }
 
+    public void addTimesheet(Timesheet sheet) {
+        timesheets.add(sheet);
+    }
 }

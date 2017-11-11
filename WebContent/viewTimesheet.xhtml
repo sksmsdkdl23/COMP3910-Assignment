@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+   </h:head>
+   <h:body>
+   	<h:form>
+   		<p:dataTable var="detail" value="#{login.viewSheet.details}">
+   			<p:column headerText="#{msgs.projectid}">
+   				<p:outputLabel value="#{detail.projectID}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.workpackage}">
+   				<p:outputLabel value="#{detail.workPackage}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.sat}">
+   				<p:outputLabel value="#{detail.hoursForWeek[0]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.sun}">
+   				<p:outputLabel value="#{detail.hoursForWeek[1]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.mon}">
+   				<p:outputLabel value="#{detail.hoursForWeek[2]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.tue}">
+   				<p:outputLabel value="#{detail.hoursForWeek[3]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.wed}">
+   				<p:outputLabel value="#{detail.hoursForWeek[4]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.thu}">
+   				<p:outputLabel value="#{detail.hoursForWeek[5]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.fri}">
+   				<p:outputLabel value="#{detail.hoursForWeek[6]}"/>
+   			</p:column>
+   			<p:column headerText="#{msgs.note}">
+   				<p:outputLabel value="#{detail.notes}"/>
+   			</p:column>
+   		</p:dataTable>
+   		<h:commandButton value="Back" action="#{login.back}"/>
+   	</h:form>
+   </h:body>
+</html>

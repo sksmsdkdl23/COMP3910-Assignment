@@ -23,13 +23,29 @@
    <from-outcome>editUser</from-outcome>
    <to-view-id>/editUser.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>viewAll</from-outcome>
+   <to-view-id>/viewAll.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>newSheet</from-outcome>
+   <to-view-id>/newTimesheet.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  
  <navigation-rule>
-  <from-view-id>/editUser.xhtml</from-view-id>
+  <from-view-id>*</from-view-id>
   <navigation-case>
    <from-outcome>back</from-outcome>
    <to-view-id>/menu.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/viewAll.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>view</from-outcome>
+   <to-view-id>/viewTimesheet.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  

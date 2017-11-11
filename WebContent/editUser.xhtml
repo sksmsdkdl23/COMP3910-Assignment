@@ -13,6 +13,13 @@
    		<p:dataTable editable="true" var="employee" value="#{login.empList.employees}" id="userList">
    			<p:ajax event="rowEdit" listener="#{login.onRowEdit}" update=":users:userList"></p:ajax>
    			<p:ajax event="rowEditInit" listener="#{login.onRowEditInit}" />
+   			<p:column headerText="#{msgs.delete}">
+   				<p:commandLink value="#{msgs.delete}" 
+   								action="#{login.deleteEmployee(employee)}" 
+   								rendered="#{employee ne login.empList.getAdministrator()}"
+   								update=":users:userList"/>
+   													
+   			</p:column>
    			<p:column headerText="#{msgs.empName}">
    				<p:cellEditor>
    					<f:facet name="input">
@@ -43,11 +50,21 @@
 	   				</f:facet>
    				</p:cellEditor>
 		    </p:column>
+		    <p:column headerText="#{msgs.password}">
+		    	<p:cellEditor>
+   					<f:facet name="input">
+   						<p:inputText value="#{login.password}" required="true" size="5" />
+   					</f:facet>
+	   				<f:facet name="output">
+	   					 <h:outputText value="#{login.getPassword(employee)}" />
+	   				</f:facet>
+   				</p:cellEditor>
+		    </p:column>
 		    <p:column style="width:32px">
 		    	<p:rowEditor />
 		    </p:column>
    		</p:dataTable>
-   		<p:commandButton value="Add User" />
+   		<p:commandButton value="Add User" action="#{login.newEmployee}" update=":users:userList"/>
    		<p:commandButton value="Back" action="#{login.back}" />
    	</h:form>
    </h:body>

@@ -18,14 +18,32 @@
    <PROCESS-ITEM-OUTPUT ID="editUser::#editUser.xhtml" NAME="output"
     PATH="/editUser.xhtml" TARGET="rules:#editUser.xhtml"
     TITLE="editUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="viewAll::#viewAll.xhtml" NAME="output1"
+    PATH="/viewAll.xhtml" TARGET="rules:#viewAll.xhtml" TITLE="viewAll" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="newSheet::#newTimesheet.xhtml"
+    NAME="output2" PATH="/newTimesheet.xhtml"
+    TARGET="rules:#newTimesheet.xhtml" TITLE="newSheet" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#editUser.xhtml" PATH="/editUser.xhtml"
-  SHAPE="464,129,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#editUser.xhtml:0" NAME="item"
-   PATH="/editUser.xhtml" model-entity="JSFProcessItem">
+  SHAPE="464,129,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viewAll.xhtml" PATH="/viewAll.xhtml"
+  SHAPE="496,305,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#viewAll.xhtml:0" NAME="item"
+   PATH="/viewAll.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="view::#viewTimesheet.xhtml" NAME="output"
+    PATH="/viewTimesheet.xhtml" TARGET="rules:#viewTimesheet.xhtml"
+    TITLE="view" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#newTimesheet.xhtml"
+  PATH="/newTimesheet.xhtml" SHAPE="512,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="back::#menu.xhtml" NAME="output"
     PATH="/menu.xhtml" TARGET="rules:#menu.xhtml" TITLE="back" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#viewTimesheet.xhtml"
+  PATH="/viewTimesheet.xhtml" SHAPE="240,465,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
