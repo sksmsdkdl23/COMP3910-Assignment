@@ -10,6 +10,28 @@
    </h:head>
    <h:body>
    	<h:form>
+   		<div>
+   			<p:outputLabel value="#{msgs.empNum}">
+   				<h:outputText value="#{login.getLoggedUser().empNumber}"/>
+   			</p:outputLabel>
+   		</div>
+   		<div>
+   			<p:outputLabel value="#{msgs.empName}">
+   				<h:outputText value="#{login.getLoggedUser().name}"/>
+   			</p:outputLabel>
+   		</div>
+   		<div>
+   			<p:outputLabel value="#{msgs.endWeek}">
+   				<h:outputText value="#{login.newSheet.endWeek}">
+   					<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+   				</h:outputText>
+   			</p:outputLabel>
+   		</div>
+   		<div>
+   			<p:outputLabel value="#{msgs.empName}">
+   				<h:outputText value="#{login.newSheet.weekNumber}"/>
+   			</p:outputLabel>
+   		</div>
    		<p:dataTable var="detail" value="#{login.viewSheet.details}">
    			<p:column headerText="#{msgs.projectid}">
    				<p:outputLabel value="#{detail.projectID}"/>
@@ -17,6 +39,11 @@
    			<p:column headerText="#{msgs.workpackage}">
    				<p:outputLabel value="#{detail.workPackage}"/>
    			</p:column>
+   			<p:column headerText="#{msgs.total}">
+   				<p:outputLabel value="#{detail.getSum()}">
+   					<f:convertNumber maxFractionDigits="1" minFractionDigits="1" groupingUsed="false" />
+   				</p:outputLabel>
+		    </p:column>
    			<p:column headerText="#{msgs.sat}">
    				<p:outputLabel value="#{detail.hoursForWeek[0]}"/>
    			</p:column>
@@ -42,7 +69,7 @@
    				<p:outputLabel value="#{detail.notes}"/>
    			</p:column>
    		</p:dataTable>
-   		<h:commandButton value="Back" action="#{login.back}"/>
+   		<p:commandButton value="Back" action="#{login.back}"/>
    	</h:form>
    </h:body>
 </html>

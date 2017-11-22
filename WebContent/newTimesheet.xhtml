@@ -10,25 +10,49 @@
    </h:head>
    <h:body>
    	<h:form id="timesheet">
-   		<p:dataTable editable="true" var="detail" value="#{login.newSheet.details}" id="details">
+   		<div>
+   			<p:outputLabel value="#{msgs.empNum}">
+   				<h:outputText value="#{login.getLoggedUser().empNumber}"/>
+   			</p:outputLabel>
+   		</div>
+   		<div>
+   			<p:outputLabel value="#{msgs.empName}">
+   				<h:outputText value="#{login.getLoggedUser().name}"/>
+   			</p:outputLabel>
+   		</div>
+   		<div>
+   			<p:outputLabel value="#{msgs.endWeek}">
+   				<h:outputText value="#{login.newSheet.endWeek}">
+   					<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+   				</h:outputText>
+   			</p:outputLabel>
+   		</div>
+   		<div>
+   			<p:outputLabel value="#{msgs.weekNum}">
+   				<h:outputText value="#{login.newSheet.weekNumber}"/>
+   			</p:outputLabel>
+   		</div>
    		
+   		<p:dataTable editable="true" var="detail" value="#{login.newSheet.details}" id="details">
+   			<p:ajax event="rowEdit" listener="#{login.timeEdit}" update=":timesheet:details"></p:ajax>
    			<p:column headerText="#{msgs.delete}">
-   				<h:commandLink value="#{msgs.delete}" action="login.deleteRow(detail)"/>
+   				<h:commandLink value="#{msgs.delete}" action="#{login.deleteRow(detail)}" update=":timesheet:details"/>
    			</p:column>
-   			<p:column headerText="Project ID">
+   			<p:column headerText="#{msgs.projectid}">
    				<p:cellEditor>
    					<f:facet name="input">
-   						<p:inputText value="#{detail.projectID}" size="3"/>
+   						<p:inputText value="#{detail.projectID}" size="3" required="true"/>
    					</f:facet>
 	   				<f:facet name="output">
 	   					<h:outputText value="#{detail.projectID}" />
 	   				</f:facet>
    				</p:cellEditor>
 		    </p:column>
-		    <p:column headerText="WP">
+		    
+		    <p:column headerText="#{msgs.workpackage}">
 		    	<p:cellEditor>
    					<f:facet name="input">
-   						<p:inputText value="#{detail.workPackage}" size="3"/>
+   						<p:inputText value="#{detail.workPackage}" size="3" required="true"/>
    					</f:facet>
 	   				<f:facet name="output">
 	   					<h:outputText value="#{detail.workPackage}" />
@@ -36,7 +60,13 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="SAT">
+		    <p:column headerText="#{msgs.total}">
+   				<p:outputLabel value="#{detail.getSum()}">
+   					<f:convertNumber maxFractionDigits="1" minFractionDigits="1" groupingUsed="false" />
+   				</p:outputLabel>
+		    </p:column>
+		    
+		    <p:column headerText="#{msgs.sat}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[0]}" size="3"/>
@@ -47,7 +77,7 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="SUN">
+		    <p:column headerText="#{msgs.sun}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[1]}" size="3"/>
@@ -58,7 +88,7 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="MON">
+		    <p:column headerText="#{msgs.mon}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[2]}" size="3"/>
@@ -69,7 +99,7 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="TUES">
+		    <p:column headerText="#{msgs.tue}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[3]}" size="3"/>
@@ -80,7 +110,7 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="WED">
+		    <p:column headerText="#{msgs.wed}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[4]}" size="3"/>
@@ -91,7 +121,7 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="THUR">
+		    <p:column headerText="#{msgs.thu}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[5]}" size="3"/>
@@ -102,7 +132,7 @@
    				</p:cellEditor>
 		    </p:column>
 		    
-		    <p:column headerText="FRI">
+		    <p:column headerText="#{msgs.fri}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.hoursForWeek[6]}" size="3"/>
@@ -113,7 +143,7 @@
    				</p:cellEditor>                
 		    </p:column>
 		    
-		    <p:column headerText="Notes">
+		    <p:column headerText="#{msgs.note}">
 		    	<p:cellEditor>
    					<f:facet name="input">
    						<p:inputText value="#{detail.notes}" size="3"/>

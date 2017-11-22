@@ -1,10 +1,10 @@
 package com.corejsf;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -66,8 +66,14 @@ public class Login implements Serializable {
      * Current Sheet.
      */
     private Timesheet viewSheet;
+    
+    /**
+     * TimesheetRow.
+     */
+    private ArrayList<TimesheetRow> timesheetRow = new ArrayList<>();
 
     /**
+     * Get new sheet.
      * @return the newSheet
      */
     public Timesheet getNewSheet() {
@@ -75,6 +81,7 @@ public class Login implements Serializable {
     }
 
     /**
+     * Set new sheet.
      * @param newSheet the newSheet to set
      */
     public void setNewSheet(Timesheet newSheet) {
@@ -191,12 +198,12 @@ public class Login implements Serializable {
      */
     public void onRowEdit(RowEditEvent event) {
         Employee emp = (Employee) event.getObject();
-        Map<String, Employee> tempEmp = empList.getEmpMap();
         Map<String, String> tempCred = empList.getLoginCombos();
         
         tempCred.remove(oldUserName);
         tempCred.remove(emp.getUserName());
         tempCred.put(emp.getUserName(), password);
+        empList.merge(emp);
         oldUserName = null;
     }
     
@@ -209,6 +216,11 @@ public class Login implements Serializable {
         oldUserName = oldEmp.getUserName();
     }
     
+    /**
+     * Get user's password.
+     * @param emp employee
+     * @return password
+     */
     public String getPassword(Employee emp) {
         if (emp.getUserName() == null) {
             return "";
@@ -216,31 +228,48 @@ public class Login implements Serializable {
         return empList.getLoginCombos().get(emp.getUserName());
     }
     
+    /**
+     * Adds an employee.
+     */
     public void newEmployee() {
         Employee newEmp = new Employee();
+        newEmp.setName("Default");
+        empList.setEmployeeId(empList.getEmployeeId() + 1);
+        newEmp.setUserName("Default" 
+                        + empList.getEmployeeId());
+        System.out.println(newEmp.getUserName());
         empList.addEmployee(newEmp);
     }
     
+    /**
+     * Deletes an employee.
+     * @param emp employee to delete
+     */
     public void deleteEmployee(Employee emp) {
         empList.deleteEmployee(emp);
     }
     
+    /**
+     * Returns string for navigation.
+     * @return viewAll String for navigation
+     */
     public String viewAll() {
         return "viewAll";
     }
     
+    /**
+     * Get list of timesheets for logged user.
+     * @return timesheets
+     */
     public List<Timesheet> getUserTimesheets() {
         Employee emp = empList.getCurrentEmployee();
         return timesheetList.getTimesheets(emp);
     }
     
-    @PostConstruct
-    public void sampleSheet() {
-        Timesheet newSheet = new Timesheet();
-        newSheet.setEmployee(empList.getAdministrator());
-        timesheetList.addTimesheet(newSheet);
-    }
-    
+    /**
+     * Creates a new timesheet.
+     * @return newSheet string for navigation
+     */
     public String newTimesheet() {
         newSheet = new Timesheet();
         for (int i = 0; i < FIVE; i++) {
@@ -251,25 +280,42 @@ public class Login implements Serializable {
         return "newSheet";
     }
     
+    /**
+     * Add a row to the timesheet.
+     */
     public void addRow() {
         newSheet.addRow();
     }
     
+    /**
+     * Delete a row.
+     * @param row row to delete
+     */
     public void deleteRow(TimesheetRow row) {
         newSheet.deleteRow(row);
     }
     
+    /**
+     * Saves the timesheet.
+     * @return back string to go back to main menu.
+     */
     public String save() {
         timesheetList.addTimesheet(newSheet);
         return "back";
     }
     
+    /**
+     * View timesheet user clicks on.
+     * @param currentSheet timesheet user clicks on
+     * @return view string for navigation
+     */
     public String viewTimesheet(Timesheet currentSheet) {
         viewSheet = currentSheet;
         return "view";
     }
 
     /**
+     * Get timesheet .
      * @return the viewSheet
      */
     public Timesheet getViewSheet() {
@@ -277,11 +323,20 @@ public class Login implements Serializable {
     }
 
     /**
+     * Set timesheet.
      * @param viewSheet the viewSheet to set
      */
     public void setViewSheet(Timesheet viewSheet) {
         this.viewSheet = viewSheet;
     }
     
-    
+    /**
+     * Ajax Event.
+     * @param event event object
+     */
+    public void timeEdit(RowEditEvent event) {
+        TimesheetRow row = (TimesheetRow) event.getObject();
+        
+        timesheetRow.add(row);
+    }
 }
